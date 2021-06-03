@@ -16,7 +16,8 @@ class UserController {
 
     @GetMapping
     fun all(model: Model): String = "index".apply {
+        println("All users: ${srv.findAll()}")
         model.addAttribute("all", srv.findAll())
     }
-}
+
 }

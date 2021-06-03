@@ -1,6 +1,7 @@
 package com.zbogdan.app.springsec
 
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -18,7 +19,14 @@ class SecurityConf : WebSecurityConfigurerAdapter() {
     }
 
     override fun configure(web: WebSecurity) {
-        web.ignoring().antMatchers("/users/**").antMatchers("/api/users/**")
+        web.ignoring()
+            .antMatchers(HttpMethod.POST)
+            .antMatchers("/api/users/**")
+            .antMatchers(HttpMethod.GET)
+            .antMatchers("/api/users/**")
+            .antMatchers("/users/**")
+            .antMatchers(HttpMethod.DELETE)
+            .antMatchers("/api/users/**")
     }
 
 }
